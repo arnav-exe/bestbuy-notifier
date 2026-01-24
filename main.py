@@ -2,7 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
-from send_email_smtp import send_email
+from send_email import send_email
 from email_templates import sale_email, non_sale_email
 
 load_dotenv()
