@@ -1,0 +1,917 @@
+{
+    "sku": 6575404,
+    "score": null,
+    "productId": null,
+    "name": "LG - UltraGear 27\" IPS LED QHD 180Hz 1ms G-SYNC Compatible and AMD Freesync Gaming Monitor with HDR10 (HDMI, DisplayPort) - Black",
+    "source": null,
+    "type": "HardGood",
+    "startDate": "2024-05-14",
+    "new": false,
+    "active": true,
+    "lowPriceGuarantee": false,
+    "activeUpdateDate": "2024-05-14T00:00:33",
+    "regularPrice": 349.99,
+    "salePrice": 244.99,
+    "clearance": true,
+    "onSale": true,
+    "planPrice": null,
+    "priceWithPlan": [],
+    "contracts": [],
+    "priceRestriction": null,
+    "priceUpdateDate": "2025-12-18T02:01:15",
+    "digital": false,
+    "preowned": false,
+    "carriers": [],
+    "planFeatures": [],
+    "devices": [],
+    "carrierPlans": [],
+    "technologyCode": null,
+    "carrierModelNumber": null,
+    "earlyTerminationFees": [],
+    "monthlyRecurringCharge": "",
+    "monthlyRecurringChargeGrandTotal": "",
+    "activationCharge": "",
+    "minutePrice": "",
+    "planCategory": null,
+    "planType": null,
+    "familyIndividualCode": null,
+    "validFrom": null,
+    "validUntil": null,
+    "carrierPlan": null,
+    "outletCenter": null,
+    "secondaryMarket": null,
+    "frequentlyPurchasedWith": [],
+    "accessories": [],
+    "relatedProducts": [],
+    "requiredParts": [],
+    "techSupportPlans": [],
+    "crossSell": [],
+    "salesRankShortTerm": null,
+    "salesRankMediumTerm": null,
+    "salesRankLongTerm": null,
+    "bestSellingRank": null,
+    "url": "https://api.bestbuy.com/click/-/6575404/pdp",
+    "spin360Url": null,
+    "mobileUrl": "https://api.bestbuy.com/click/-/6575404/pdp",
+    "affiliateUrl": null,
+    "addToCartUrl": "https://api.bestbuy.com/click/-/6575404/cart",
+    "affiliateAddToCartUrl": null,
+    "linkShareAffiliateUrl": "",
+    "linkShareAffiliateAddToCartUrl": "",
+    "search": null,
+    "upc": "195174084908",
+    "productTemplate": "Monitors",
+    "categoryPath": [
+        {
+            "id": "cat00000",
+            "name": "Best Buy"
+        },
+        {
+            "id": "abcat0500000",
+            "name": "Computers & Tablets"
+        },
+        {
+            "id": "abcat0712000",
+            "name": "PC Gaming"
+        },
+        {
+            "id": "pcmcat304600050011",
+            "name": "Gaming Monitors"
+        }
+    ],
+    "alternateCategories": [
+        {
+            "id": "pcmcat143700050048",
+            "name": "All Monitors"
+        }
+    ],
+    "lists": [],
+    "customerReviewCount": 359,
+    "customerReviewAverage": 4.7,
+    "customerTopRated": true,
+    "format": null,
+    "freeShipping": true,
+    "freeShippingEligible": true,
+    "inStoreAvailability": true,
+    "inStoreAvailabilityText": null,
+    "inStoreAvailabilityTextHtml": null,
+    "inStoreAvailabilityUpdateDate": "2024-06-07T10:34:32",
+    "itemUpdateDate": "2026-01-23T11:49:34",
+    "onlineAvailability": true,
+    "onlineAvailabilityText": null,
+    "onlineAvailabilityTextHtml": null,
+    "onlineAvailabilityUpdateDate": "2025-03-11T11:50:01",
+    "releaseDate": null,
+    "shippingCost": 0.0,
+    "shipping": [
+        {
+            "ground": "",
+            "secondDay": "",
+            "nextDay": "",
+            "vendorDelivery": ""
+        }
+    ],
+    "shippingLevelsOfService": [
+        {
+            "serviceLevelId": 21,
+            "serviceLevelName": "Two Day",
+            "unitShippingPrice": 0.0
+        }
+    ],
+    "specialOrder": false,
+    "shortDescription": null,
+    "shortDescriptionHtml": null,
+    "class": "MONITORS",
+    "classId": 84,
+    "subclass": "GAMING MONITORS",
+    "subclassId": 331,
+    "department": "COMPUTERS",
+    "departmentId": 6,
+    "bestBuyItemId": "",
+    "protectionPlanTerm": "27\"",
+    "protectionPlanType": null,
+    "protectionPlanLowPrice": "",
+    "protectionPlanHighPrice": "",
+    "buybackPlans": [],
+    "protectionPlans": [],
+    "protectionPlanDetails": [],
+    "productFamilies": [],
+    "productVariations": [
+        {
+            "sku": "6575403",
+            "variations": [
+                {
+                    "name": "Monitors:Screen_Size",
+                    "value": "31.5\""
+                }
+            ]
+        },
+        {
+            "sku": "6575404",
+            "variations": [
+                {
+                    "name": "Monitors:Screen_Size",
+                    "value": "27\""
+                }
+            ]
+        }
+    ],
+    "aspectRatio": null,
+    "screenFormat": null,
+    "lengthInMinutes": null,
+    "mpaaRating": null,
+    "plot": null,
+    "plotHtml": null,
+    "studio": null,
+    "theatricalReleaseDate": null,
+    "description": null,
+    "manufacturer": "LG",
+    "modelNumber": "27GS75Q-B.AUS",
+    "images": [
+        {
+            "rel": "Front_Zoom",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": true
+        },
+        {
+            "rel": "Front_Standard",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Front_Detail",
+            "unitOfMeasure": "pixels",
+            "width": "210",
+            "height": "105",
+            "href": "https://pisces.bbystatic.com/prescaled/105/210/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Front_Large",
+            "unitOfMeasure": "pixels",
+            "width": "220",
+            "height": "160",
+            "href": "https://pisces.bbystatic.com/prescaled/160/220/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Front_Medium",
+            "unitOfMeasure": "pixels",
+            "width": "70",
+            "height": "140",
+            "href": "https://pisces.bbystatic.com/prescaled/140/70/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Front_Thumbnail",
+            "unitOfMeasure": "pixels",
+            "width": "54",
+            "height": "108",
+            "href": "https://pisces.bbystatic.com/prescaled/108/54/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Angle_Zoom",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/67e30389-37f9-426b-b571-f3902650104d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Angle_Standard",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/67e30389-37f9-426b-b571-f3902650104d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Left_Zoom",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8ddd449b-71ed-41fa-9f8a-237c96d99d1b.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Left_Standard",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/8ddd449b-71ed-41fa-9f8a-237c96d99d1b.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Back_Zoom",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/e96bb3f1-3610-41a9-86f2-bc4d4c4196d0.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Back_Standard",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/e96bb3f1-3610-41a9-86f2-bc4d4c4196d0.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_1",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0b99b3b5-13f3-4a92-8601-fd241c01479a.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_1",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/0b99b3b5-13f3-4a92-8601-fd241c01479a.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_2",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/d799ba5a-a3d4-4b3e-9e6b-99bdb49401e3.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_2",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/d799ba5a-a3d4-4b3e-9e6b-99bdb49401e3.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_3",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4887716e-7a7f-47a1-9290-d85478a1eb49.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_3",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/4887716e-7a7f-47a1-9290-d85478a1eb49.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_4",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2bf7c791-cda8-4992-96f3-7f39bf27d3a9.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_4",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/2bf7c791-cda8-4992-96f3-7f39bf27d3a9.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_5",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2a79aaba-0344-4a89-abaa-eb6fa5e18ef8.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_5",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/2a79aaba-0344-4a89-abaa-eb6fa5e18ef8.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_10",
+            "unitOfMeasure": "pixels",
+            "width": "2008",
+            "height": "1980",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv1d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_10",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv1d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_11",
+            "unitOfMeasure": "pixels",
+            "width": "1784",
+            "height": "1900",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv11d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_11",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv11d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_12",
+            "unitOfMeasure": "pixels",
+            "width": "1984",
+            "height": "1904",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv12d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_12",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv12d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_13",
+            "unitOfMeasure": "pixels",
+            "width": "784",
+            "height": "1888",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv13d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_13",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv13d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_14",
+            "unitOfMeasure": "pixels",
+            "width": "796",
+            "height": "1916",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv14d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_14",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv14d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_15",
+            "unitOfMeasure": "pixels",
+            "width": "2048",
+            "height": "2048",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv15d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_15",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv15d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Zoom_19",
+            "unitOfMeasure": "pixels",
+            "width": "3163",
+            "height": "3163",
+            "href": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6575/6575404cv19d.jpg",
+            "primary": false
+        },
+        {
+            "rel": "Alt_View_Standard_19",
+            "unitOfMeasure": "pixels",
+            "width": "500",
+            "height": "500",
+            "href": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/6575/6575404cv19d.jpg",
+            "primary": false
+        }
+    ],
+    "image": "https://pisces.bbystatic.com/prescaled/500/500/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+    "largeFrontImage": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+    "mediumImage": "https://pisces.bbystatic.com/prescaled/140/70/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+    "thumbnailImage": "https://pisces.bbystatic.com/prescaled/108/54/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+    "largeImage": "https://pisces.bbystatic.com/prescaled/160/220/image2/BestBuy_US/images/products/57e1a59c-3028-4d0e-b916-439a2524d925.jpg",
+    "alternateViewsImage": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0b99b3b5-13f3-4a92-8601-fd241c01479a.jpg",
+    "angleImage": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/67e30389-37f9-426b-b571-f3902650104d.jpg",
+    "backViewImage": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/e96bb3f1-3610-41a9-86f2-bc4d4c4196d0.jpg",
+    "energyGuideImage": null,
+    "leftViewImage": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8ddd449b-71ed-41fa-9f8a-237c96d99d1b.jpg",
+    "accessoriesImage": null,
+    "remoteControlImage": null,
+    "rightViewImage": null,
+    "topViewImage": null,
+    "albumTitle": "UltraGear 27\" IPS LED QHD 180Hz 1ms G-SYNC Compatible and AMD Freesync Gaming Monitor with HDR10 (HDMI, DisplayPort)",
+    "artistName": null,
+    "artistId": null,
+    "originalReleaseDate": null,
+    "parentalAdvisory": null,
+    "mediaCount": null,
+    "monoStereo": null,
+    "studioLive": null,
+    "condition": "New",
+    "inStorePickup": true,
+    "friendsAndFamilyPickup": true,
+    "homeDelivery": false,
+    "quantityLimit": 3,
+    "fulfilledBy": null,
+    "members": [],
+    "bundledIn": [],
+    "albumLabel": null,
+    "genre": null,
+    "color": "Black",
+    "depth": null,
+    "dollarSavings": 105.0,
+    "percentSavings": "30.0",
+    "tradeInValue": "",
+    "height": null,
+    "orderable": "Available",
+    "weight": "13.2 pounds",
+    "shippingWeight": 19,
+    "width": "24.2 inches",
+    "warrantyLabor": "Limited 2 Years",
+    "warrantyParts": "Limited 2 Years",
+    "softwareAge": null,
+    "softwareGrade": null,
+    "platform": null,
+    "numberOfPlayers": null,
+    "softwareNumberOfPlayers": null,
+    "esrbRating": null,
+    "longDescription": "Introducing a 27&#8221; QHD IPS gaming monitors that checks all the boxes with impeccable visuals, lightning-quick speed and optimized ergonomics. The UltraGear is a compact 27-inch QHD IPS display, delivering crisp vivid visuals with a resolution of 2560 x 1440 pixels that makes games look great from virtually any viewing angle. And with an ultra-fast 180Hz refresh rate and a 1ms GtG (Gray-to-Gray) response time, every frame renders silky smooth, and offers virtually blur-free gameplay even in the most action-packed moments. The display shows off vivid color and contrast with HDR10 and up to 99% sRGB color gamut coverage. From vast gaming landscapes to intense battles, details are brought to life with astonishing clarity. And screen tearing and stuttering are virtually eliminated thanks to NVIDIA G-SYNC Compatible&#178; and AMD FreeSync technologies, which synchronize the monitor's refresh rate with your graphics card, delivering tear-free, smooth gameplay. On your desktop, immerse yourself in the action with the 3-side virtually borderless design, which minimizes distractions from your field of view. And optimize the display to your specs with tilt, height, and pivot adjustable stand, allowing you to find the perfect viewing angle for maximum comfort. Whether you're gaming for hours on end or tackling productivity tasks, UltraGear ensures you stay comfortable and focused as you ascend your game.",
+    "longDescriptionHtml": "Introducing a 27\u201d QHD IPS gaming monitors that checks all the boxes with impeccable visuals, lightning-quick speed and optimized ergonomics. The UltraGear is a compact 27-inch QHD IPS display, delivering crisp vivid visuals with a resolution of 2560 x 1440 pixels that makes games look great from virtually any viewing angle. And with an ultra-fast 180Hz refresh rate and a 1ms GtG (Gray-to-Gray) response time, every frame renders silky smooth, and offers virtually blur-free gameplay even in the most action-packed moments. The display shows off vivid color and contrast with HDR10 and up to 99% sRGB color gamut coverage. From vast gaming landscapes to intense battles, details are brought to life with astonishing clarity. And screen tearing and stuttering are virtually eliminated thanks to NVIDIA G-SYNC Compatible\u00b2 and AMD FreeSync technologies, which synchronize the monitor's refresh rate with your graphics card, delivering tear-free, smooth gameplay. On your desktop, immerse yourself in the action with the 3-side virtually borderless design, which minimizes distractions from your field of view. And optimize the display to your specs with tilt, height, and pivot adjustable stand, allowing you to find the perfect viewing angle for maximum comfort. Whether you're gaming for hours on end or tackling productivity tasks, UltraGear ensures you stay comfortable and focused as you ascend your game.",
+    "cast": [],
+    "crew": [],
+    "details": [
+        {
+            "name": "Brand",
+            "value": "LG",
+            "values": [
+                "LG"
+            ]
+        },
+        {
+            "name": "Model Number",
+            "value": "27GS75Q-B",
+            "values": [
+                "27GS75Q-B"
+            ]
+        },
+        {
+            "name": "Product Name",
+            "value": "UltraGear 27\" IPS LED QHD 180Hz 1ms G-SYNC Compatible and AMD Freesync Gaming Monitor with HDR10 (HDMI, DisplayPort)",
+            "values": [
+                "UltraGear 27\" IPS LED QHD 180Hz 1ms G-SYNC Compatible and AMD Freesync Gaming Monitor with HDR10 (HDMI, DisplayPort)"
+            ]
+        },
+        {
+            "name": "Color",
+            "value": "Black",
+            "values": [
+                "Black"
+            ]
+        },
+        {
+            "name": "Refresh Rate",
+            "value": "180Hz",
+            "values": [
+                "180Hz"
+            ]
+        },
+        {
+            "name": "Maximum Resolution",
+            "value": "2560 x 1440",
+            "values": [
+                "2560 x 1440"
+            ]
+        },
+        {
+            "name": "Native Resolution",
+            "value": "2560 x 1440",
+            "values": [
+                "2560 x 1440"
+            ]
+        },
+        {
+            "name": "Contrast Ratio",
+            "value": "1000:1",
+            "values": [
+                "1000:1"
+            ]
+        },
+        {
+            "name": "Response Time",
+            "value": "1 milliseconds",
+            "values": [
+                "1 milliseconds"
+            ]
+        },
+        {
+            "name": "Display Type",
+            "value": "LED",
+            "values": [
+                "LED"
+            ]
+        },
+        {
+            "name": "Panel Type",
+            "value": "IPS",
+            "values": [
+                "IPS"
+            ]
+        },
+        {
+            "name": "Synchronization Technology",
+            "value": "FreeSync (AMD Adaptive Sync)",
+            "values": [
+                "FreeSync (AMD Adaptive Sync)",
+                "Not Applicable"
+            ]
+        },
+        {
+            "name": "Aspect Ratio",
+            "value": "16:9",
+            "values": [
+                "16:9"
+            ]
+        },
+        {
+            "name": "Curved Screen",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Brightness",
+            "value": "300 candela per square meter",
+            "values": [
+                "300 candela per square meter"
+            ]
+        },
+        {
+            "name": "Screen Size",
+            "value": "27 inches",
+            "values": [
+                "27 inches"
+            ]
+        },
+        {
+            "name": "High Dynamic Range (HDR)",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "High Dynamic Range Format",
+            "value": "HDR 10",
+            "values": [
+                "HDR 10"
+            ]
+        },
+        {
+            "name": "Touch Screen",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "On-Screen Display Languages",
+            "value": "English",
+            "values": [
+                "English"
+            ]
+        },
+        {
+            "name": "Display Surface",
+            "value": "Standard glass",
+            "values": [
+                "Standard glass"
+            ]
+        },
+        {
+            "name": "Number of DisplayPort Inputs (Total)",
+            "value": "1",
+            "values": [
+                "1"
+            ]
+        },
+        {
+            "name": "Number of HDMI Inputs (Total)",
+            "value": "2",
+            "values": [
+                "2"
+            ]
+        },
+        {
+            "name": "Number of Mini DisplayPort Inputs",
+            "value": "0",
+            "values": [
+                "0"
+            ]
+        },
+        {
+            "name": "Number of Thunderbolt Ports (Total)",
+            "value": "0",
+            "values": [
+                "0"
+            ]
+        },
+        {
+            "name": "Display Connector(s)",
+            "value": "1 x DisplayPort",
+            "values": [
+                "1 x DisplayPort",
+                "2 x HDMI"
+            ]
+        },
+        {
+            "name": "Headphone Jack",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "Wall Mountable",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "VESA Wall Mount Standard",
+            "value": "100mm x 100mm",
+            "values": [
+                "100mm x 100mm"
+            ]
+        },
+        {
+            "name": "Voice Assistant Built-in",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Tiltable",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "Adjustable Stand Height",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "Built-In Webcam",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Integrated Speaker(s)",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Smart Capable",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Product Height With Stand",
+            "value": "22.7 inches",
+            "values": [
+                "22.7 inches"
+            ]
+        },
+        {
+            "name": "Product Height Without Stand",
+            "value": "14.6 inches",
+            "values": [
+                "14.6 inches"
+            ]
+        },
+        {
+            "name": "Product Width",
+            "value": "24.2 inches",
+            "values": [
+                "24.2 inches"
+            ]
+        },
+        {
+            "name": "Product Depth (With Stand)",
+            "value": "10 inches",
+            "values": [
+                "10 inches"
+            ]
+        },
+        {
+            "name": "Product Depth Without Stand",
+            "value": "2 inches",
+            "values": [
+                "2 inches"
+            ]
+        },
+        {
+            "name": "Product Weight",
+            "value": "13.2 pounds",
+            "values": [
+                "13.2 pounds"
+            ]
+        },
+        {
+            "name": "Stand Included",
+            "value": "Yes",
+            "values": [
+                "Yes"
+            ]
+        },
+        {
+            "name": "Power Consumption",
+            "value": "28.92 watts",
+            "values": [
+                "28.92 watts"
+            ]
+        },
+        {
+            "name": "ENERGY STAR Certified",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "EPEAT Qualified",
+            "value": "No",
+            "values": [
+                "No"
+            ]
+        },
+        {
+            "name": "Operating System Compatibility",
+            "value": "Not Applicable",
+            "values": [
+                "Not Applicable",
+                "Not Applicable",
+                "Not Applicable",
+                "Not Applicable",
+                "Not Applicable"
+            ]
+        },
+        {
+            "name": "Warranty - Parts",
+            "value": "Limited 2 Years",
+            "values": [
+                "Limited 2 Years"
+            ]
+        },
+        {
+            "name": "Warranty - Labor",
+            "value": "Limited 2 Years",
+            "values": [
+                "Limited 2 Years"
+            ]
+        }
+    ],
+    "includedItemList": [
+        {
+            "includedItem": "Monitor"
+        },
+        {
+            "includedItem": "Power Cable"
+        },
+        {
+            "includedItem": "DisplayPort Cable"
+        }
+    ],
+    "features": [
+        {
+            "feature": "Ascend Your Game with the Speed of UltraGear\nExperience next-level QHD gaming performance."
+        },
+        {
+            "feature": "Ultra-fast at up to 180Hz & 1ms MBR\nGear up for smooth gameplay at up to 280Hz refresh rate and 1ms MBR. The faster speed and smoother action lets you respond quickly to opponents and stay a step ahead of the competition&#185;."
+        },
+        {
+            "feature": "Bold Color On A 27\" Screen\nImmerse yourself in a world of brilliant color from HDR10 that helps enhance picture quality and up to 99% sRGB color gamut expression to make games visually pop."
+        },
+        {
+            "feature": "Get in the Game\nOfficially validated by NVIDIA as G-SYNC Compatible&#178; and equipped with AMD FreeSync means this UltraGear provides smooth, fast action that reduces screen tearing and stutter. Never miss a frame of the action as you clinch your victories."
+        },
+        {
+            "feature": "Customized for a Game Changing Experience\nChoose from a variety of modes including Gamer, FPS or RTS to optimize display settings for the best view possible."
+        },
+        {
+            "feature": "Advanced Gaming Features\nDynamic Action Sync: Respond to action as it happens with reduced input lag. Black Stabilizer: Black Stabilizer is your ally to attack or defend in dark scenes. FPS Counter:  Your frames per second displayed for real-time data. Crosshair: Center-display crosshairs give enhanced vision and precision for accuracy."
+        },
+        {
+            "feature": "Designed for the Win\nLose yourself in the game with a three-side virtually borderless, ultra-thin design that optimizes space on your battlestation. With two HMDI ports and DisplayPort connectivity on a tilt adjustable display, game to your specs."
+        }
+    ],
+    "offers": [],
+    "marketplace": null,
+    "listingId": null,
+    "sellerId": null,
+    "shippingRestrictions": null,
+    "discs": [],
+    "commerceSku": 6575404,
+    "haulawayAvailable": null,
+    "proposition65WarningMessage": null,
+    "proposition65WarningType": "04",
+    "brightnessCdPerSqM": "300.0",
+    "contrastRatio": "1000:1",
+    "depthWithStandIn": 10.0,
+    "depthWithoutStandIn": 2.0,
+    "displayType": "LED",
+    "energyStarQualified": false,
+    "headphoneJacks": true,
+    "heightWithStandIn": 22.7,
+    "heightWithoutStandIn": 14.6,
+    "mountBracketVesaPattern": "100mm x 100mm",
+    "productAspectRatio": "16:9",
+    "productHeightIn": 14.6,
+    "screenSizeIn": 27.0,
+    "screenRefreshRateHz": 180,
+    "smartCapable": false
+}
