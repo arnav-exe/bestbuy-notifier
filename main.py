@@ -93,6 +93,7 @@ def main():
     for p in PRODUCTS:
         url = f'https://api.bestbuy.com/v1/products/{p["sku"]}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}'
 
+        # TODO: add exponential backoff to API fetching (20 total retries)
         # fetch product data from API
         data = get_product_data(url)
 
