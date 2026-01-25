@@ -1,27 +1,28 @@
 import requests
+import time
 import os
 from dotenv import load_dotenv
 
-from send_email import send_email
-from email_templates import sale_email, non_sale_email
+from send_ntfy import post_ntfy
+from ntfy_templates import sale_ntfy, non_sale_ntfy
 
 load_dotenv()
 
 PRODUCTS = [
-    {  # airpods pro 3
-        "sku": 6376563,
-        "desired_price": 200,
-        "email_to": os.getenv("RECIPIENT_ADDRESS")
-    },
-    {  # lenovo legion go 2
-        "sku": 6643145,
-        "desired_price": 1500,
-        "email_to": os.getenv("RECIPIENT_ADDRESS")
-    },
+    # {  # airpods pro 3
+    #     "sku": 6376563,
+    #     "desired_price": 200,
+    #     "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+    # },
+    # {  # lenovo legion go 2
+    #     "sku": 6643145,
+    #     "desired_price": 1500,
+    #     "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+    # },
     {  # LG 27 inch 1440p 180hz monitor (TESTING)
         "sku": 6575404,
         "desired_price": 400,
-        "email_to": os.getenv("RECIPIENT_ADDRESS")
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     }
 ]
 
@@ -64,32 +65,29 @@ def get_product_data(url: str):
 def parse_product_data(product: dict, user_product_data: dict):
     product_name = " ".join(product["name"].split()[:5])
 
-    sent_email = False
+    sent_ntfy = False
 
     if product["orderable"] == "Available" and product["onSale"]:  # if sale
-        email_body = sale_email(product_name, product["salePrice"], product["regularPrice"], product["dollarSavings"], product["percentSavings"], product["url"], product["priceUpdateDate"])
+        ntfy_body = sale_ntfy(product_name, product["salePrice"], product["regularPrice"], product["dollarSavings"], product["percentSavings"], product["url"], product["priceUpdateDate"])
 
-        send_email(
-            user_product_data["email_to"],
-            f"BestBuy Alert - {product_name} is in stock and {product['percentSavings']}% off!",
-            email_body
-        )
-        sent_email = True
+        post_ntfy(ntfy_body, user_product_data["ntfy_topic"])
+
+        sent_ntfy = True
 
     # if not sale but price <= desired price
     elif product["orderable"] == "Available" and product["regularPrice"] <= user_product_data["desired_price"]:
-        email_body = non_sale_email(product_name, product["regularPrice"], user_product_data["desired_price"], product["url"], product["priceUpdateDate"])
-        send_email(
-            user_product_data["email_to"],
-            f"BestBuy Alert - {product_name} is in stock!",
-            email_body
-        )
-        sent_email = True
+        ntfy_body = non_sale_ntfy(product_name, product["regularPrice"], user_product_data["desired_price"], product["url"], product["priceUpdateDate"])
 
-    return sent_email
+        post_ntfy(ntfy_body, user_product_data["ntfy_topic"])
+
+        sent_ntfy = True
+
+    return sent_ntfy
 
 
 def main():
+    # implement exponential backoff with 10 retries (starting at 1s)
+
     for p in PRODUCTS:
         url = f'https://api.bestbuy.com/v1/products/{p["sku"]}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}'
 
@@ -98,12 +96,14 @@ def main():
         data = get_product_data(url)
 
         # data parsing logic
-        sent_email = parse_product_data(data, p)
+        sent_ntfy = parse_product_data(data, p)
 
-        if sent_email:
-            print(f"Sent email for product: {p['sku']}")
+        if sent_ntfy:
+            print(f"Sent ntfy notification for product: {p['sku']}")
         else:
-            print(f"Email NOT sent for product: {p['sku']}")
+            print(f"ntfy notification NOT sent for product: {p['sku']}")
+
+        time.sleep(0.5)
 
 
 if __name__ == "__main__":
