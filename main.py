@@ -89,13 +89,13 @@ def main():
     logger = init_logger()
     logger.info("="*80)
     for p in PRODUCTS:
-        logger.info()
+        logger.info("")
         # exponential backoff params
         retries = 10
         delay = 2
         exp = 0
 
-        url = f'https://api.bestbuy.com/v1/products/{p["sku"]}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}'
+        url = f"https://api.bestbuy.com/v1/products/{p["sku"]}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}"
 
         # fetch product data from API
         for i in range(retries):  # exponential backoff
@@ -119,7 +119,7 @@ def main():
         else:
             logger.info(f"Did NOT send ntfy notification for product {p['sku']} (either out of stock or above desired price)")
 
-        logger.info()
+        logger.info("")
         logger.info("="*80)
 
 
