@@ -1,5 +1,9 @@
 email-templates/
 
+node_modules/
+package-lock.json
+package.json
+
 #--------------------------------------------------#
 # The following was generated with gitignore.nvim: #
 #--------------------------------------------------#
