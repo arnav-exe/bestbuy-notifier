@@ -1,8 +1,12 @@
 import subprocess
+import sys
 
 
 def main():
-    subprocess.run("node_modules\\.bin\\amazon-buddy", shell=True)
+    if sys.platform == "win32":
+        subprocess.run(["npx.cmd", "amazon-buddy"])
+    else:
+        subprocess.run(["npx", "amazon-buddy"])
 
 
 if __name__ == "__main__":
