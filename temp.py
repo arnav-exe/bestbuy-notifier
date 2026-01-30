@@ -25,9 +25,9 @@ PRODUCTS = [
 
 def main(asin):
     if sys.platform == "win32":
-        subprocess.run(f"node_modules\\.bin\\amazon-buddy.cmd asin {asin}")
+        subprocess.run(["node_modules\\.bin\\amazon-buddy", "asin", asin], shell=True)
     else:
-        subprocess.run(f"node_modules\\.bin\\amazon-buddy asin {asin}")
+        subprocess.run(["node_modules\\.bin\\amazon-buddy", "asin", asin])
 
 
 if __name__ == "__main__":
