@@ -17,21 +17,15 @@
 
 NOTE: keys with missing values are either `empty` or `null`
 
+# PROBLEMS:
+ 1. 'send_ntfy.py' is too opinionated - too much default data for bestbuy specifically
+ 1. separate bestbuy and amazon fetching into 2 files?? - need to modularize this to allow future additiosn (EG: returned webscraper data)
+ 1. use function decorators to cleanly separate logging?
 
-
-# Other considerations:
-1. how to handle products with really long names?
-1. what happens if http status_code != 200? - do i notify user?
-
-
-
-
-# TODO
- 1. replace smtp sending with gmail API (smtp is auto rejecting emails since they contain hyperlinks)
- 1. add exponential backoff retrying for API data fetching
- 1. multithreading? (1 thread for each product?)
-
+# TODO:
+ 1. implement strategy pattern to abstract API querying from main (requires defining own internal representatin of data)
+ 1. implement adapters to translate returned API data into compatible format
 
 # USAGE
  1. `pip install -r requirements.txt` inside project root
- 1. `npm install git+https://github.com/arnav-exe/amazon-product-api.git#f61c718`
+ 1. `npm install git+https://github.com/arnav-exe/amazon-product-api.git#7a2d602`

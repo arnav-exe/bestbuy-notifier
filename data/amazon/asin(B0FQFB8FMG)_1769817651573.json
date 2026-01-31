@@ -1,0 +1,79 @@
+[
+    {
+        "title": "Apple AirPods Pro 3 Wireless Earbuds, Active Noise Cancellation, Live Translation, Heart Rate Sensing,Hearing Aid Feature,Bluetooth Headphones,Spatial Audio, High-Fidelity Sound, USB-C Charging, White",
+        "description": "",
+        "feature_bullets": [
+            " WORLD’S BEST IN-EAR ACTIVE NOISE CANCELLATION — Removes up to 2x more unwanted noise than AirPods Pro 2* so you can stay fully immersed in the moment.*",
+            " BREAKTHROUGH AUDIO PERFORMANCE — Experience breathtaking, three-dimensional audio with AirPods Pro 3. A new acoustic architecture delivers transformed bass, detailed clarity so you can hear every instrument, and stunningly vivid vocals.",
+            " HEART RATE SENSING — Built-in heart rate sensing lets you track your heart rate and calories burned for up to 50 different workout types.* With iPhone, you will have access to the Move ring, step count, and the new Workout Buddy,* powered by Apple Intelligence.*",
+            " LIVE TRANSLATION — Communicate across language barriers using Live Translation,* enabled by Apple Intelligence.*",
+            " EXTENDED BATTERY LIFE — Get up to 8 hours of listening time with Active Noise Cancellation on a single charge. Or up to 10 hours in Transparency using the Hearing Aid feature.*",
+            " SECURE IN-EAR FIT — All-new ear tips, now in five sizes, provide a more secure, personalized fit and better audio performance across the board.*",
+            " HEARING HEALTH — Take a hearing test in the comfort of your home.* Use the Hearing Aid feature, now with automatic Conversation Boost, for clearer communication.* And active Hearing Protection helps prevent exposure to loud environmental noise.*",
+            "PERSONALIZED LISTENING — Next-generation Adaptive EQ customizes a sound signature for your unique ear geometry and fit.* And inward-facing microphones measure what you’re hearing for real-time adjustments.",
+            "MAGICAL EXPERIENCE — Automatic Switching lets you seamlessly switch between your Apple devices.* And Audio Sharing lets you share a song or show between two sets of AirPods on your iPhone, iPad, or Apple TV.*"
+        ],
+        "variants": [],
+        "categories": [
+            {
+                "category": "Apple Products",
+                "url": "https://www.amazon.com/apple/?_encoding=UTF8&ref_=topnav_storetab_appledevicessubnav"
+            }
+        ],
+        "asin": "B0FQFB8FMG",
+        "url": "https://www.amazon.com/dp/B0FQFB8FMG",
+        "reviews": {
+            "total_reviews": 5123,
+            "rating": "",
+            "answered_questions": 0
+        },
+        "item_available": true,
+        "price": {
+            "symbol": "$",
+            "currency": "USD",
+            "current_price": 199,
+            "discounted": true,
+            "before_price": 249,
+            "savings_amount": 50,
+            "savings_percent": 20.08
+        },
+        "bestsellers_rank": [],
+        "main_image": "https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL1500_.jpg",
+        "total_images": 6,
+        "images": [
+            "https://m.media-amazon.com/images/I/61solmQSSlL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71dt0UurPZL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61pH6X22khL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/714cmrFzdWL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61h9Etg5SOL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61cs+t88oNL._AC_SL1500_.jpg"
+        ],
+        "total_videos": 0,
+        "videos": [],
+        "delivery_message": "",
+        "product_information": {
+            "dimensions": "",
+            "weight": "",
+            "available_from": "",
+            "available_from_utc": "",
+            "available_for_months": 0,
+            "available_for_days": 0,
+            "manufacturer": "",
+            "model_number": "",
+            "department": "",
+            "sold_by": "Amazon Resale",
+            "fulfilled_by": "Amazon",
+            "qty_per_order": 3,
+            "store_id": "",
+            "brand": "Visit the Apple Store"
+        },
+        "badges": {
+            "amazon_сhoice": false,
+            "amazon_prime": true,
+            "best_seller": false
+        },
+        "sponsored_products": [],
+        "also_bought": [],
+        "other_sellers": []
+    }
+]

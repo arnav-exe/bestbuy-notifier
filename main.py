@@ -11,17 +11,18 @@ load_dotenv()
 
 PRODUCTS = [
     {  # airpods pro 3
-        "sku": 6376563,
+        "bestbuy_sku": 6376563,
+        "amazon_asin": "B0FQFB8FMG",
         "desired_price": 200,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
     {  # lenovo legion go 2
-        "sku": 6643145,
+        "bestbuy_sku": 6643145,
         "desired_price": 1500,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
     {  # LG 27 inch 1440p 180hz monitor (TESTING)
-        "sku": 6575404,
+        "bestbuy_sku": 6575404,
         "desired_price": 400,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     }
@@ -31,7 +32,7 @@ FIELDS_ARR = ["orderable", "name", "onSale", "regularPrice", "salePrice", "dolla
 FIELDS = ','.join(FIELDS_ARR)
 
 
-def get_product_data(url: str):
+def get_product_data(url: str, logger):
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -51,10 +52,10 @@ def get_product_data(url: str):
         raw_data.raise_for_status()
 
     except requests.exceptions.HTTPError as e:  # fail
-        pass
+        logger.error(e)
 
     except Exception as e:
-        pass
+        logger.error(e)
 
     # success
     data = raw_data.json()
@@ -92,11 +93,11 @@ def process_products(logger, p):
     delay = 2
     exp = 0
 
-    url = f"https://api.bestbuy.com/v1/products/{p['sku']}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}"
+    url = f"https://api.bestbuy.com/v1/products/{p['bestbuy_sku']}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}"
 
     # fetch product data from API
     for i in range(retries):  # exponential backoff
-        data = get_product_data(url)
+        data = get_product_data(url, logger)
 
         if "errorCode" in data:  # if returned dict contains 'errorCode' (implying fetch was unsuccessful)
             logger.warning(data)
@@ -111,10 +112,10 @@ def process_products(logger, p):
     sent_ntfy = parse_and_notify(data, p)
 
     if sent_ntfy:
-        logger.info(f"Sent ntfy notification for product: {p['sku']}")
+        logger.info(f"Sent ntfy notification for product: {p['bestbuy_sku']}")
 
     else:
-        logger.info(f"Did NOT send ntfy notification for product {p['sku']} (either out of stock or above desired price)")
+        logger.info(f"Did NOT send ntfy notification for product {p['bestbuy_sku']} (either out of stock or above desired price)")
 
     logger.info("")
     logger.info("="*80)
