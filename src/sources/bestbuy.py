@@ -2,7 +2,10 @@ from dotenv import load_dotenv
 import os
 import requests
 
-from base import DataSource
+try:
+    from .base import DataSource
+except ImportError:
+    from base import DataSource
 
 load_dotenv()
 
@@ -57,4 +60,4 @@ if __name__ == "__main__":
 
     import logging
     logger = logging.getLogger()
-    print(bestbuy.fetch_raw(6376563, logger))
+    res = bestbuy.fetch_raw(6376563, logger)
