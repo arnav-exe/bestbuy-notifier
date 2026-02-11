@@ -17,7 +17,7 @@ class DataSource(ABC):
 
     def fetch_product(self):
         # main method for fetching and parsing data
-        data = self.fetch_raw()
+        data = self.fetch_raw().json()
 
         return self.parse(data)
 

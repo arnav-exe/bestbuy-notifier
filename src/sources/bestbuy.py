@@ -6,10 +6,11 @@ try:
     from .base import DataSource
 except ImportError:
     from base import DataSource
+from ..schema import Product
 
 load_dotenv()
 
-FIELDS_ARR = ["orderable", "name", "onSale", "regularPrice", "salePrice", "dollarSavings", "percentSavings", "priceUpdateDate", "url"]
+FIELDS_ARR = ["sku", "orderable", "name", "onSale", "regularPrice", "salePrice", "dollarSavings", "percentSavings", "priceUpdateDate", "url"]
 FIELDS = ','.join(FIELDS_ARR)
 
 
@@ -43,12 +44,20 @@ class BestbuySource(DataSource):
         except Exception as e:
             logger.error(e)
 
-        return raw_data.json()
+        return raw_data
 
-    def parse(self, product: dict) -> dict:
-        product["name"] = " ".join(product["name"].split()[:5])  # truncate product name to first 5 words
-
-        return product
+    def parse(self, res: dict) -> dict:
+        return Product(
+            identifier=res["sku"],
+            product_name=" ".join(res["name"].split()[:5]),  # product name truncated to 5 words
+            in_stock=True if res["orderable"] == "Available" else False,
+            on_sale=res["onSale"],
+            sale_price=res["salePrice"],
+            regular_price=res["regularPrice"],
+            product_url=res["url"],
+            retailer_name="BestBuy",
+            retailer_logo="https://corporate.bestbuy.com/wp-content/uploads/thegem-logos/logo_0717ce843a2125d21ef450e7f05f352e_1x.png"
+        )
 
 
 if __name__ == "__main__":
