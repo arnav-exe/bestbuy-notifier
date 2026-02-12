@@ -1,13 +1,17 @@
-import requests
 import time
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+import importlib
 
 from src.send_ntfy import post_ntfy
 from src.ntfy_templates import sale_ntfy, non_sale_ntfy
 from src.log_handler import init_logger
+from src.datasources.registry import SourceRegistry
 
 load_dotenv()
+
+DATASOURCE_PATH = Path("src\\datasources\\")
 
 PRODUCTS = [
     {  # airpods pro 3
@@ -54,40 +58,6 @@ PRODUCTS = [
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     }
 ]
-
-FIELDS_ARR = ["orderable", "name", "onSale", "regularPrice", "salePrice", "dollarSavings", "percentSavings", "priceUpdateDate", "url"]
-FIELDS = ','.join(FIELDS_ARR)
-
-
-def get_product_data(url: str, logger):
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/121.0.0.0 Safari/537.36"
-        ),
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Connection": "keep-alive",
-        "Referer": "https://www.bestbuy.com/",
-        "Origin": "https://www.bestbuy.com",
-    }
-
-    try:
-        raw_data = requests.get(url, headers=headers)
-        raw_data.raise_for_status()
-
-    except requests.exceptions.HTTPError as e:  # fail
-        logger.error(e)
-
-    except Exception as e:
-        logger.error(e)
-
-    # success
-    data = raw_data.json()
-
-    return data
 
 
 def parse_and_notify(product: dict, user_product_data: dict):
@@ -148,6 +118,15 @@ def process_products(logger, p):
     logger.info("="*80)
 
 
+# auto import all modules inside 'src/datasources' to trigger source registry
+def import_datasources():
+    rel_path = str(DATASOURCE_PATH).replace("\\", ".")
+    for file in os.listdir(DATASOURCE_PATH):
+        if file.endswith("py") and "_" not in file and file not in ["__init__.py", "base.py", "implementation-test.py", "registry.py"]:
+            src_import_str = rel_path + "." + file.split(".")[0]
+            importlib.import_module(src_import_str)
+
+
 def main():
     logger = init_logger()
     logger.info("="*80)
@@ -156,12 +135,16 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import_datasources()
+    # for product in PRODUCTS:
+    #     for id in product["identifiers"]:
+    #         print(id)
+    #     print()
 
-    # register all data sources to registry
-    # for each product obj in PRODUCTS arr:
-        # for each source from the registry:
-            # if {src}.can_handle({identifier}):
-                # call the generic fetch data function
+    print(SourceRegistry.all())
+    pass
+
+
+
 
     # at some point (either after each succesful fetch or after both for loops have executed), run logic to determine whether to send ntfy or not

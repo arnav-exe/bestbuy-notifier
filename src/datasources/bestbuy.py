@@ -61,6 +61,7 @@ class BestbuySource(DataSource):
             retailer_logo="https://corporate.bestbuy.com/wp-content/uploads/thegem-logos/logo_0717ce843a2125d21ef450e7f05f352e_1x.png"
         )
 
+
 # manually register datasource to registry
 SourceRegistry.register(BestbuySource)
 
