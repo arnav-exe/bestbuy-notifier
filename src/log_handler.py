@@ -2,18 +2,13 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 import os
-import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.exit(0)
 LOG_DIR = BASE_DIR / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 
 LOG_FILE = Path(LOG_DIR) / "console-output.log"
-
-print(LOG_DIR)
-print(LOG_FILE)
 
 
 def init_logger():

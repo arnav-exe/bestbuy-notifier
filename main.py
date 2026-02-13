@@ -1,5 +1,6 @@
 import time
 import os
+import json
 from dotenv import load_dotenv
 from pathlib import Path
 import importlib
@@ -15,47 +16,52 @@ DATASOURCE_PATH = Path("src\\datasources\\")
 
 PRODUCTS = [
     {  # airpods pro 3
-        "desired_price": 200,
-        "identifiers": [
-            {"bestbuy": 6376563},
-            {"amazon": "B0FQFB8FMG"}
+        "identifiers": {
+            "bestbuy": 6376563,
+            "amazon": "B0FQFB8FMG"
+        },
+        # only notifies if product is in stock AND on sale below max_price
+        "notification_rules": [
+            {
+                "type": "on_sale",
+                "max_price": 200
+            },
         ],
-        "stock_notifier": False,
-        "sale_notifier": True,
-        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")  # maybe get rid of this - see .env comments
     },
-
-    {  # lenovo legion go 2 - 1tb
-        "desired_price": 1400,
-        "identifiers": [
-            {"bestbuy": 6643145},
-            {"amazon": "B0G573TMZS"},
+    {  # lenovo legion go 2
+        "identifiers": {
+            "bestbuy": 6643145,
+            "costco": "some_sku_number",
+            "lenovo": "some_sku_number"
+        },
+        # only notifies if product is in stock, regardless of price
+        "notification_rules": [
+            {
+                "type": "in_stock",
+                "max_price": None
+            },
         ],
-        "stock_notifier": True,
-        "sale_notifier": False,
-        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")  # maybe get rid of this - see .env comments
     },
-
-    {  # lenovo legion go 2 - 2tb
-        "desired_price": 1500,
-        "identifiers": [
-            {"bestbuy": 6666376},
-            {"amazon": "B0FYR2V7ZB"},
-        ],
-        "stock_notifier": True,
-        "sale_notifier": False,
-        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
-    },
-
     {  # LG 27 inch 1440p 180hz monitor (TESTING)
+        # notifies if product is EITHER in stock for less than $400 OR in stock AND on sale for less than $350
         "desired_price": 400,
-        "identifiers": [
-            {"bestbuy": 6575404},
-            {"bhvideo": "some_sku_number"}
+        "identifiers": {
+            "bestbuy": 6575404,
+            "bhvideo": "some_sku_number"
+        },
+        "notification_rules": [
+            {
+                "type": "in_stock",
+                "max_price": 400
+            },
+            {
+                "type": "on_sale",
+                "max_price": 350
+            },
         ],
-        "stock_notifier": True,
-        "sale_notifier": True,
-        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")  # maybe get rid of this - see .env comments
     }
 ]
 
@@ -127,22 +133,31 @@ def import_datasources():
             importlib.import_module(src_import_str)
 
 
+# do all processing stages for 1 product at a time
 def main():
-    logger = init_logger()
-    logger.info("="*80)
-    for p in PRODUCTS:
-        process_products(logger, p)
+    sources = SourceRegistry.all()
+
+    # this triple nested for loop ugly af
+    # TODO: implement multi threading such that process exec for each product is in its own thread
+    for product in PRODUCTS:
+        for src_name, identifier in product["identifiers"].items():
+            if src_name in sources:
+                # fetch standardized product data
+                data_fetcher = SourceRegistry.get(src_name)
+                data = data_fetcher.fetch_product(identifier)
+
+                # check if data meets user reqs
+                for notification in product["notification_rules"]:
+                    if notification["type"] == "in_stock":
+                        pass
+
+                    if notification["type"] == "on_sale":
+                        pass
 
 
 if __name__ == "__main__":
     import_datasources()
-    # for product in PRODUCTS:
-    #     for id in product["identifiers"]:
-    #         print(id)
-    #     print()
-
-    print(SourceRegistry.all())
-    pass
+    main()
 
 
 

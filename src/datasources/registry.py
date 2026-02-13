@@ -16,5 +16,5 @@ class SourceRegistry():
         return cls.sources[source_name]
 
     @classmethod
-    def all(cls):  # return dict with all registered data source objs
+    def all(cls) -> dict:  # return dict with all registered data source objs
         return cls.sources
