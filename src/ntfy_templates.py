@@ -1,7 +1,7 @@
 def on_sale(product, desired_price: float):
-    target_discount = (1 - (p.regular_price / desired_price)) * 100
+    target_discount = (desired_price - product.sale_price) / desired_price * 100
 
-    return f"""### {product.product_name} is in stock AND on sale!
+    return f"""### "{product.product_name}" is in stock and on sale!
 
 **💰 Sale Price:** ${product.sale_price:.2f}  
 **🏷️ Original Price:** ${product.regular_price:.2f}  
@@ -14,20 +14,20 @@ def on_sale(product, desired_price: float):
 
 
 def below_max_price(product, desired_price: float):
-    target_discount = (1 - (p.regular_price / desired_price)) * 100
+    target_discount = (desired_price - product.regular_price) / desired_price * 100
 
-    return f"""### {product.product_name} is in stock AND within your price target!
+    return f"""### "{product.product_name}" is in stock and within your price target!
 
 **💰 Current Price:** ${product.regular_price:.2f}  
 **🎯 Your Target Price:** ${desired_price:.2f}  
 
-**💵 Below your target by:** ${(desired_price - product.sale_price):.2f} ({target_discount:.1f}%)
+**💵 Below your target by:** ${(desired_price - product.regular_price):.2f} ({target_discount:.1f}%)
 
 🔗 [{product.product_url}]({product.product_url})"""
 
 
 def in_stock(product):
-    return f"""### {product.product_name} is back in stock!
+    return f"""### "{product.product_name}" is back in stock!
 
 **💰 Current Price:** ${product.regular_price:.2f}
 
