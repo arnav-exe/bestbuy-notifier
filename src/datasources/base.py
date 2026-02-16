@@ -15,24 +15,11 @@ class DataSource(ABC):
         # parse raw data into compatible format
         pass
 
-    def fetch_product(identifier: str):
+    def fetch_product(self, identifier: str):
         # main method for fetching and parsing data
-        # data = self.fetch_raw(identifier).json()
-        #
-        # return self.parse(data)  # returns Product obj (as defined in schema.py)
-        from ..schema import Product
+        data = self.fetch_raw(identifier).json()
 
-        return Product(
-            "B0FQFB8FMG",
-            "airpods pro 3",
-            True,
-            True,
-            199.99,
-            249.99,
-            "https://amazon.com/dp/airpods-pro-3",
-            "amazon",
-            "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-        )
+        return self.parse(data)  # returns Product obj (as defined in schema.py)
 
     def can_handle(self, retailer_name):
         return self.source_name == retailer_name
