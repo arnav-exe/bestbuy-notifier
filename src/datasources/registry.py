@@ -7,9 +7,9 @@ class SourceRegistry():
         """
         cls.sources = 'sources' dict inside SourceRegistry class
         "source_cls.source_name" = name of key for 'sources' dict
-        'source_cls' = source class obj reference which is the item of the dict
+        'source_cls()' = INSTANTIATED source class which is the item of the dict
         """
-        cls.sources[source_cls.source_name] = source_cls
+        cls.sources[source_cls.source_name] = source_cls()
 
     @classmethod
     def get(cls, source_name):
