@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
-import sys
 import requests
+import logging
 
 try:
     from .base import DataSource
@@ -18,6 +18,9 @@ FIELDS = ','.join(FIELDS_ARR)
 
 class BestbuySource(DataSource):
     source_name = "bestbuy"
+
+    def __init__(self, logger: logging.Logger = None):
+        super().__init__(logger)
 
     def fetch_raw(self, identifier: str) -> dict:
         headers = {
@@ -36,17 +39,9 @@ class BestbuySource(DataSource):
 
         url = f"https://api.bestbuy.com/v1/products/{identifier}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}"
 
-        try:
-            raw_data = requests.get(url, headers=headers)
-            raw_data.raise_for_status()
+        self.logger.debug(f"GET request from URL: {url}")
 
-        except requests.exceptions.HTTPError as e:
-            sys.exit(e)
-
-        except Exception as e:
-            sys.exit(e)
-
-        return raw_data
+        return requests.get(url, headers=headers)
 
     def parse(self, res: dict) -> dict:
         return Product(

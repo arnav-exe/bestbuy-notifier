@@ -102,56 +102,78 @@ def process_products(logger, p):
 
 
 # auto import all modules inside 'src/datasources' to trigger source registry
-def import_datasources():
+def import_datasources(logger):
+    SourceRegistry.set_logger(logger)
+
     rel_path = str(DATASOURCE_PATH).replace("\\", ".")
     for file in os.listdir(DATASOURCE_PATH):
         if file.endswith("py") and "_" not in file and file not in ["__init__.py", "base.py", "implementation-test.py", "registry.py"]:
             src_import_str = rel_path + "." + file.split(".")[0]
             importlib.import_module(src_import_str)
+            logger.info(f"Registered datasource: {file.split('.')[0]}")
 
 
 def jprint(json_data):
     print(json.dumps(json_data, indent=2))
 
 # do all processing stages for 1 product at a time
-def main():
+def main(logger):
     sources = SourceRegistry.all()
+    logger.info(f"Available datasources: {list(sources.keys())}")
 
-    # TODO: implement multi threading such that process exec for each product is in its own thread
     for item in WATCHLIST:
+        logger.info("")
+        logger.info("=" * 60)
+
+
         for src_name, identifier in item["identifiers"].items():
-            if src_name in sources:
-                # fetch standardized product data
-                data_fetcher = SourceRegistry.get(src_name)
+            if src_name not in sources:
+                logger.debug(f"No datasource for '{src_name}', skipping")
+                continue
 
-                product = data_fetcher.fetch_product(identifier)
+            logger.info(f"Processing: {src_name} | {identifier}")
+            logger.info("-" * 60)
 
-                print(product)
+            # fetch standardized product data
+            data_fetcher = SourceRegistry.get(src_name)
 
-                # check if data meets user reqs
-                if product.in_stock:
-                    if item["user_max_price"] is not None:
-                        if product.on_sale and product.sale_price <= item["user_max_price"]:
-                            # fire noti saying that product is in stock AND on sale AND below user_max_price
-                            on_sale_body = on_sale(product, item["user_max_price"])
-                            post_ntfy(on_sale_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+            product = data_fetcher.fetch_product(identifier)
 
-                        elif product.regular_price <= item["user_max_price"]:
-                            # fire noti saying product is in stock AND below user_max_price
-                            below_max_price_body = below_max_price(product, item["user_max_price"])
-                            post_ntfy(below_max_price_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+            if product is None:
+                continue  # error already logged by datasource
 
-                    elif item["user_max_price"] is None:
-                        # fire noti saying product is in stock
-                        in_stock_body = in_stock(product)
-                        post_ntfy(in_stock_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+            logger.info(f"Fetched: {product.product_name} | Retailer: {product.retailer_name}")
+
+            if not product.in_stock:
+                logger.info("Out of stock, skipping")
+                continue
+
+            # check if data meets user reqs
+            if item["user_max_price"] is not None:
+                if product.on_sale and product.sale_price <= item["user_max_price"]:
+                    # fire noti saying that product is in stock AND on sale AND below user_max_price
+                    on_sale_body = on_sale(product, item["user_max_price"])
+                    post_ntfy(on_sale_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                    logger.info(f"Sent ON SALE notification for {identifier}")
+
+                elif product.regular_price <= item["user_max_price"]:
+                    # fire noti saying product is in stock AND below user_max_price
+                    below_max_price_body = below_max_price(product, item["user_max_price"])
+                    post_ntfy(below_max_price_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                    logger.info(f"Sent BELOW MAX PRICE notification for {identifier}")
+
+                else:
+                    logger.info(f"Price ${product.regular_price} exceeds max ${item['user_max_price']}, skipping")
+
+            elif item["user_max_price"] is None:
+                # fire noti saying product is in stock
+                in_stock_body = in_stock(product)
+                post_ntfy(in_stock_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                logger.info(f"Sent IN STOCK notification for {identifier}")
 
 
 if __name__ == "__main__":
-    import_datasources()
-    main()
+    logger = init_logger()
 
-
-
-
-    # at some point (either after each succesful fetch or after both for loops have executed), run logic to determine whether to send ntfy or not
+    import_datasources(logger)
+    main(logger)
