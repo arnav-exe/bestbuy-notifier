@@ -3,9 +3,8 @@
  1. `npm install git+https://github.com/arnav-exe/amazon-product-api.git#7a2d602`
 
 
-
-# TODO
- - RETRIES + EXPONENTIAL BACKOFF WILL HAVE TO BE A FUNCTION DECORATOR OR SMTN GLOBAL - DO NOT IMPLEMENT THIS PER DATASOURCE
+# TODO:
+ - shift exponential backoff retry logic to each datasource instead of base because each datasource throws errors differently so need specialist logic to handle each case
 
 
 # FLOW:
@@ -23,10 +22,6 @@
  - costco - crawl4ai
  - bhvideo - crawl4ai
 
- (for ssds)
- - micro center - [check if they have own or 3rd party api]
- - newegg - [check if they have own or 3rd party api]
-
 
 
 # Goal of this refactor
@@ -34,6 +29,7 @@
     1. fetching data from src (via api)
     1. normalizing data into internal representation
     1. consuming normalized data
+
 
 
 # Internal Representation
@@ -54,9 +50,3 @@ ir = {
 ```
 
 This state will be stored in a python `dataclass`. Dataclasses should be used whenver the class you are defining holds a lot of attributes. Therefore, dataclasses are typically used over regular classes to store state.
-
-
-# TODO:
- 1. get data of an amazon product that is in stock AND NOT on sale (to confirm that if product is not on sale, current_price == before_price) - maybe lgtv
-
-

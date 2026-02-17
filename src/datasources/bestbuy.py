@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import requests
 import logging
+import time
 
 try:
     from .base import DataSource
@@ -55,6 +56,38 @@ class BestbuySource(DataSource):
             retailer_name="BestBuy",
             retailer_logo="https://corporate.bestbuy.com/wp-content/uploads/thegem-logos/logo_0717ce843a2125d21ef450e7f05f352e_1x.png"
         )
+
+    def fetch_product(self, identifier: str):
+        # exponential backoff params
+        retries = 10
+        delay = 2
+        exp = 0
+
+        try:
+            for i in range(retries):
+                self.logger.debug(f"Fetching product data for product: {identifier} (attempt: {i})")
+                response = self.fetch_raw(identifier)
+
+                if not response.ok:
+                    if i == retries - 1:  # if max retries reached, log error and return None
+                        self.logger.warning(f"[{identifier}] HTTP {response.status_code}: {response.reason}")
+                        return None
+
+                    else:  # otherwise continue with exponential backoff
+                        sleep_time = (delay ** exp) / 2
+                        time.sleep(sleep_time)
+                        exp += 1
+
+                else:  # if response==200
+                    break
+
+            product = self.parse(response.json())
+            return product
+
+        except Exception as e:
+            self.logger.error(f"[{identifier}] Failed to fetch/parse: {e}")
+            return None
+
 
 
 # manually register datasource to registry
