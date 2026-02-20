@@ -39,13 +39,6 @@ WATCHLIST = [
         "user_max_price": None,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
-    {  # LG 27 inch 1440p 180hz monitor (TESTING)
-        "identifiers": {
-            "bestbuy": 6575404,
-        },
-        "user_max_price": 350,
-        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
-    }
 ]
 
 

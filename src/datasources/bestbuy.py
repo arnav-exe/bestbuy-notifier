@@ -36,6 +36,8 @@ class BestbuySource(DataSource):
             "Connection": "keep-alive",
             "Referer": "https://www.bestbuy.com/",
             "Origin": "https://www.bestbuy.com",
+            "Cache-Control": "no-cache, no-store, max-age=0",
+            "Pragma": "no-cache",
         }
 
         url = f"https://api.bestbuy.com/v1/products/{identifier}.json?show={FIELDS}&apiKey={os.getenv('BESTBUY_API')}"

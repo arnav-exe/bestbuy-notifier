@@ -99,14 +99,16 @@ SourceRegistry.register(AmazonSource)
 
 
 if __name__ == "__main__":
+    from ..utils import jprint
+
     cmd = ["node",
            AMAZON_BUDDY_CLI,
            "asin",
-           "q34th",
+           "1259642232",
            "--random-ua"]
 
     res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
 
-    print(res.stdout)
+    jprint(res.stdout)
     print()
-    print(res.stderr)
+    jprint(res.stderr)
