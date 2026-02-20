@@ -4,10 +4,6 @@
  1. `npm install git+https://github.com/arnav-exe/amazon-product-api.git#7a2d602`
 
 
-# TODO:
- - add multithreading - assign 1 thread to each datasource
-
-
 # FLOW:
  1. for each product:
     1. for each identifier inside a product:
@@ -19,6 +15,8 @@
 
 # SOURCES TO ADD:
  - bhvideo - crawl4ai
+ - microcenter - crawl4ai
+ - costco - crawl4ai
 
 
 
@@ -48,3 +46,12 @@ ir = {
 ```
 
 This state will be stored in a python `dataclass`. Dataclasses should be used whenver the class you are defining holds a lot of attributes. Therefore, dataclasses are typically used over regular classes to store state.
+
+
+# Future Work
+## Auto-generated NTFY topic URLs
+ * Persistently store hash of all products (both current and historical) and mapping to a uuid4 str which is its NTFY topic URL
+ * Have a master NTFY topic that user is subscribed to
+ * For every new item, generate new NTFY URL, save item mapping, and send notification via master topic with link attachment that looks like this: `ntfy://ntfy.sh/{ntfy_topic_url}?display={item_name}`
+ * when user clicks on link, it will open topic and automatically subscribe
+ * all notifications for that particular item will be sent through that topic
