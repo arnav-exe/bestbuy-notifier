@@ -1,4 +1,5 @@
 import os
+import sys
 from dotenv import load_dotenv
 from pathlib import Path
 import importlib
@@ -13,7 +14,12 @@ from src.datasources.registry import SourceRegistry
 
 load_dotenv()
 
-DATASOURCE_PATH = Path("src\\datasources\\")
+PROJECT_ROOT = Path(__file__).resolve().parent
+DATASOURCE_PATH = PROJECT_ROOT / "src" / "datasources"
+
+# ensure project root is on sys.path
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 WATCHLIST = [
     {  # lenovo legion go 2 1TB
@@ -47,11 +53,10 @@ WATCHLIST = [
 def import_datasources(logger):
     SourceRegistry.set_logger(logger)
 
-    rel_path = str(DATASOURCE_PATH).replace("\\", ".")
     for file in os.listdir(DATASOURCE_PATH):
         if file.endswith("py") and "_" not in file and file not in ["__init__.py", "base.py", "implementation-test.py", "registry.py"]:
-            src_import_str = rel_path + "." + file.split(".")[0]
-            importlib.import_module(src_import_str)
+            module_name = f"src.datasources.{file.split('.')[0]}"
+            importlib.import_module(module_name)
             logger.info(f"Registered datasource: {file.split('.')[0]}")
 
 
@@ -73,12 +78,14 @@ def _process_identifier(log_queue, src_name, identifier, user_max_price, ntfy_to
 
     logger.info(f"[PID {pid}] Child process started for {src_name}:{identifier}")
 
+    if str(PROJECT_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_ROOT))
+
     # re register datasource in this child process
     SourceRegistry.set_logger(logger)
-    rel_path = str(DATASOURCE_PATH).replace("\\", ".")
 
     try:
-        importlib.import_module(f"{rel_path}.{src_name}")
+        importlib.import_module(f"src.datasources.{src_name}")
 
     except ModuleNotFoundError:
         logger.error(f"[PID {pid}] Could not import datasource module for '{src_name}'")
