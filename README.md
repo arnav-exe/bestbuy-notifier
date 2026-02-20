@@ -1,5 +1,6 @@
 # USAGE
- 1. `pip install -r requirements.txt` inside project root
+ 1. `pip install -r requirements.txt`
+ 1. `crawl4ai-setup`
  1. `npm install git+https://github.com/arnav-exe/amazon-product-api.git#7a2d602`
 
 
@@ -17,7 +18,6 @@
 
 
 # SOURCES TO ADD:
- - costco - crawl4ai
  - bhvideo - crawl4ai
 
 

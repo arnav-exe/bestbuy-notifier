@@ -88,13 +88,13 @@ def main(logger):
                 if product.on_sale and product.sale_price <= item["user_max_price"]:
                     # fire noti saying that product is in stock AND on sale AND below user_max_price
                     on_sale_body = on_sale(product, item["user_max_price"])
-                    post_ntfy(on_sale_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                    post_ntfy(on_sale_body, product.product_url, product.retailer_name, product.retailer_logo, item["ntfy_topic"])
                     logger.info(f"Sent ON SALE notification for {identifier}")
 
                 elif product.regular_price <= item["user_max_price"]:
                     # fire noti saying product is in stock AND below user_max_price
                     below_max_price_body = below_max_price(product, item["user_max_price"])
-                    post_ntfy(below_max_price_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                    post_ntfy(below_max_price_body, product.product_url, product.retailer_name, product.retailer_logo, item["ntfy_topic"])
                     logger.info(f"Sent BELOW MAX PRICE notification for {identifier}")
 
                 else:
@@ -103,7 +103,7 @@ def main(logger):
             elif item["user_max_price"] is None:
                 # fire noti saying product is in stock
                 in_stock_body = in_stock(product)
-                post_ntfy(in_stock_body, product.product_url, product.retailer_name, product.retailer_logo, os.getenv("NTFY_TOPIC_URL"))
+                post_ntfy(in_stock_body, product.product_url, product.retailer_name, product.retailer_logo, item["ntfy_topic"])
                 logger.info(f"Sent IN STOCK notification for {identifier}")
 
 
