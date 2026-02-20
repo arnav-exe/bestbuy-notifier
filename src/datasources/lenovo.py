@@ -152,6 +152,8 @@ class LenovoSource(DataSource):
         exp = 0
 
         try:
+            m = None
+
             for i in range(retries):
                 self.logger.debug(f"Fetching product data for product: {identifier} (attempt: {i})")
 
@@ -161,22 +163,28 @@ class LenovoSource(DataSource):
                     if i == retries - 1:
                         self.logger.warning(f"Failed to load page: {response.error_message}")
                         return None
-
                     else:
                         sleep_time = (delay ** exp) / 2
                         time.sleep(sleep_time)
                         exp += 1
+                        continue
 
-
-                if not (m := INJECTED_RE.search(response.html or "")):  # holy walrus operator 
+                if not (m := INJECTED_RE.search(response.html or "")):  # holy walrus operator
                     if i == retries - 1:
                         self.logger.warning("Injected data not found in html")
                         return None
-
                     else:
                         sleep_time = (delay ** exp) / 2
                         time.sleep(sleep_time)
                         exp += 1
+                        continue
+
+                # success
+                break
+
+            if m is None:
+                self.logger.warning("No valid response after all retries")
+                return None
 
             product = self.parse(m.group(1), identifier)
 
