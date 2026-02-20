@@ -13,19 +13,19 @@ load_dotenv()
 DATASOURCE_PATH = Path("src\\datasources\\")
 
 WATCHLIST = [
-    {  # airpods pro 3
+    {  # lenovo legion go 2 1TB
         "identifiers": {
-            "bestbuy": 6376563,
-            "amazon": "B0FQFB8FMG"
+            "bestbuy": "6643145",
+            "amazon": "B0G573TMZS"
         },
-        "user_max_price": 200,
+        "user_max_price": None,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
-    {  # lenovo legion go 2
+    {  # lenovo legion go 2 2TB
         "identifiers": {
-            "bestbuy": 6643145,
-            "costco": "some_sku_number",
-            "lenovo": "some_sku_number"
+            "bestbuy": "6666376",
+            "amazon": "B0FYR2V7ZB",
+            "lenovo": "https://www.lenovo.com/us/en/p/handheld/legion-go-gen-2/83n0000aus"
         },
         "user_max_price": None,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
