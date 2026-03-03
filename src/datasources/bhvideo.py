@@ -1,53 +1,43 @@
-"""
-BH Photo Video Product Scraper
-================================
-Extracts product name, stock status, and pricing from a bhphotovideo.com page.
-
-Cloudflare bypass — two-pass strategy:
-  Pass 1: headless=True (fast, no window). Works on residential IPs.
-  Pass 2: headless=False. Used when headless is blocked. On Linux without a
-  graphical display (e.g. Raspberry Pi cron job), a virtual framebuffer is
-  started automatically — install the OS dependency once with:
-      sudo apt-get install xvfb
-
-A persistent browser profile is stored in .browser_profile/ so the
-Cloudflare clearance cookie is reused across runs.
-"""
-
 import asyncio
 import json
+import logging
 import os
 import platform
 import re
 import sys
+import time
 from pathlib import Path
 
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
-TARGET_URL = (
-    "https://www.bhphotovideo.com/c/product/1920305-REG/"
-    "lenovo_83n0000aus_legion_go_2_handheld.html"
-)
+try:
+    from .base import DataSource
+except ImportError:
+    from base import DataSource
+from ..schema import Product
+from .registry import SourceRegistry
+
+
 
 PROFILE_DIR = Path(__file__).parent / ".browser_profile"
 
-_IN_STOCK_SUFFIXES = frozenset({"/InStock", "/LimitedAvailability", "/OnlineOnly", "/BackOrder"})
+IN_STOCK_SUFFIXES = frozenset({"/InStock", "/LimitedAvailability", "/OnlineOnly", "/BackOrder"})
 
-_JSONLD_RE = re.compile(
+JSON_LD_RE = re.compile(
     r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>\s*(.*?)\s*</script>',
     re.DOTALL | re.IGNORECASE,
 )
-_LIST_PRICE_LABEL_RE = re.compile(
+LIST_PRICE_LABEL_RE = re.compile(
     r'(?:list\s+price|msrp|manufacturer[\'s]*\s+(?:suggested\s+)?(?:retail\s+)?price'
     r'|regular\s+price|orig(?:inal)?\s+price|was\s*:?|before\s+discount)'
     r'[^$\d]{0,30}\$\s*([\d,]+(?:\.\d{1,2})?)',
     re.IGNORECASE,
 )
-_DOLLAR_RE = re.compile(r'\$\s*([\d,]+(?:\.\d{1,2})?)')
+DOLLAR_RE = re.compile(r'\$\s*([\d,]+(?:\.\d{1,2})?)')
 
 
 def _extract_product_jsonld(html):
-    for m in _JSONLD_RE.finditer(html):
+    for m in JSON_LD_RE.finditer(html):
         try:
             data = json.loads(m.group(1))
         except (json.JSONDecodeError, ValueError):
@@ -58,17 +48,8 @@ def _extract_product_jsonld(html):
     return None
 
 
-def _parse_price(raw):
-    if raw is None:
-        return None
-    try:
-        return float(str(raw).replace(",", "").replace("$", "").strip())
-    except (ValueError, TypeError):
-        return None
-
-
 def _find_list_price(html, current_price):
-    for m in _LIST_PRICE_LABEL_RE.finditer(html):
+    for m in LIST_PRICE_LABEL_RE.finditer(html):
         try:
             candidate = float(m.group(1).replace(",", ""))
         except ValueError:
@@ -84,17 +65,15 @@ def _find_list_price(html, current_price):
     if start == -1:
         return None
     region = html[start: start + 2000]
-    amounts = [float(m.group(1).replace(",", "")) for m in _DOLLAR_RE.finditer(region)]
-    if higher := [v for v in amounts if v > current_price * 1.01]:
+    amounts = [float(m.group(1).replace(",", "")) for m in DOLLAR_RE.finditer(region)]
+    if higher := [v for v in amounts if v > current_price * 1.01]:  # walrus operator bomboclaat
         return max(higher)
     return None
 
 
+# start Xvfb virtual framebuffer on headless Linux so headed browser can open
+# returns display object (call .stop() when done) or none
 def _start_virtual_display():
-    """Start an Xvfb virtual framebuffer on headless Linux so a headed browser can open.
-    Returns the Display object (call .stop() when done), or None.
-    Requires: sudo apt-get install xvfb && pip install pyvirtualdisplay
-    """
     if platform.system() != "Linux" or os.environ.get("DISPLAY"):
         return None
     try:
@@ -107,7 +86,6 @@ def _start_virtual_display():
 
 
 async def _fetch_html(url, headless):
-    """Fetch the page; return HTML if the product page loaded, None if Cloudflare blocked."""
     async with AsyncWebCrawler(config=BrowserConfig(
         browser_type="chromium",
         headless=headless,
@@ -124,78 +102,110 @@ async def _fetch_html(url, headless):
     if not result.success:
         return None
     html = result.html or ""
-    # A real product page always has JSON-LD; the Cloudflare challenge page does not.
+
+    # cloudflare chal page wont have jsonld
     return html if "application/ld+json" in html else None
 
 
-async def scrape(url):
-    """Scrape a BH Photo product page.
-    Returns dict: product_name, is_in_stock, is_on_sale, regular_price, sale_price.
-    """
-    PROFILE_DIR.mkdir(exist_ok=True)
+class BHVideoSource(DataSource):
+    source_name = "bhvideo"
 
-    html = await _fetch_html(url, headless=True)
-    if html is None:
-        display = _start_virtual_display()
+    def __init__(self, logger: logging.Logger = None):
+        super().__init__(logger)
+
+
+    async def fetch_raw(self, identifier: str) -> str:
+        PROFILE_DIR.mkdir(exist_ok=True)
+
+        self.logger.debug(f"crawl4ai GET request (headless): {identifier}")
+        html = await _fetch_html(identifier, headless=True)
+
+        if html is None:
+            self.logger.debug(f"Headless fetch blocked, retrying in headed mode: {identifier}")
+            display = _start_virtual_display()
+            try:
+                html = await _fetch_html(identifier, headless=False)
+            finally:
+                if display:
+                    display.stop()
+
+        return html
+
+
+    def parse(self, raw_data: str, url: str) -> Product:
+        if not (product_ld := _extract_product_jsonld(raw_data)):  # another walrus operator (am i the goat??)
+            self.logger.warning("No schema.org/Product JSON-LD found in HTML")
+            raise RuntimeError("No schema.org/Product JSON-LD found. The page structure may have changed.")
+
+        offers = product_ld.get("offers", {})
+        if isinstance(offers, list):
+            offers = offers[0] if offers else {}
+        if not isinstance(offers, dict):
+            offers = {}
+
+        raw = offers.get("price")
         try:
-            html = await _fetch_html(url, headless=False)
-        finally:
-            if display:
-                display.stop()
+            current_price = float(str(raw).replace(",", "").replace("$", "").strip()) if raw is not None else None
+        except (ValueError, TypeError):
+            current_price = None
 
-    if not html:
-        raise RuntimeError(
-            "Cloudflare blocked the request in both headless and headed modes.\n"
-            "If a browser window appeared, click 'Verify you are human' if "
-            "prompted and run the script again."
+        if current_price is None:
+            self.logger.warning(f"Could not parse price: {raw!r}")
+
+        list_price = _find_list_price(raw_data, current_price) if current_price is not None else None
+
+        return Product(
+            identifier=url,
+            product_name=product_ld.get("name"),
+            in_stock=any(offers.get("availability", "").endswith(s) for s in IN_STOCK_SUFFIXES),
+            on_sale=list_price is not None,
+            regular_price=list_price if list_price is not None else current_price,
+            sale_price=current_price,
+            product_url=url,
+            retailer_name="B&H Photo Video",
+            retailer_logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/B%26H_Foto_%26_Electronics_Logo.svg/960px-B%26H_Foto_%26_Electronics_Logo.svg.png",
         )
 
-    if not (product := _extract_product_jsonld(html)):
-        raise RuntimeError("No schema.org/Product JSON-LD found. The page structure may have changed.")
 
-    offers = product.get("offers", {})
-    if isinstance(offers, list):
-        offers = offers[0] if offers else {}
-    if not isinstance(offers, dict):
-        offers = {}
+    def fetch_product(self, identifier: str):
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-    if (current_price := _parse_price(offers.get("price"))) is None:
-        raise RuntimeError(f"Could not parse price: {offers.get('price')!r}")
+        retries = 10
+        delay = 2
+        exp = 0
 
-    list_price = _find_list_price(html, current_price)
+        try:
+            for i in range(retries):
+                self.logger.debug(f"Fetching product data for product: {identifier} (attempt: {i})")
 
-    return {
-        "product_name":  product.get("name"),
-        "is_in_stock":   any(offers.get("availability", "").endswith(s) for s in _IN_STOCK_SUFFIXES),
-        "is_on_sale":    list_price is not None,
-        "regular_price": list_price if list_price is not None else current_price,
-        "sale_price":    current_price,
-    }
+                html = asyncio.run(self.fetch_raw(identifier))
+
+                if html is not None:
+                    break
+
+                if i == retries - 1:
+                    self.logger.warning("Failed to load page: Cloudflare blocked in both headless and headed modes")
+                    return None
+
+                time.sleep((delay ** exp) / 2)
+                exp += 1
+
+            return self.parse(html, identifier)
+
+        except Exception as e:
+            self.logger.error(f"[{identifier}] Failed to fetch/parse: {e}")
+            return None
 
 
-def main():
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    if hasattr(sys.stderr, "reconfigure"):
-        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
-
-    url = sys.argv[1] if len(sys.argv) > 1 else TARGET_URL
-    print(f"Scraping: {url}")
-    print("-" * 60)
-
-    try:
-        p = asyncio.run(scrape(url))
-    except RuntimeError as exc:
-        print(f"Error: {exc}", file=sys.stderr)
-        sys.exit(1)
-
-    regular, sale = p["regular_price"], p["sale_price"]
-    print(f"Product Name  : {p['product_name']}")
-    print(f"In Stock      : {p['is_in_stock']}")
-    print(f"On Sale       : {p['is_on_sale']}")
-    print(f"Regular Price : {'${:.2f}'.format(regular) if regular is not None else 'N/A'}")
-    print(f"Sale Price    : {'${:.2f}'.format(sale)    if sale    is not None else 'N/A'}")
+SourceRegistry.register(BHVideoSource)
 
 
 if __name__ == "__main__":
-    main()
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+
+    url = "https://www.bhphotovideo.com/c/product/1920305-REG/lenovo_83n0000aus_legion_go_2_handheld.html"
+
+    b = BHVideoSource(logger)
+    print(b.fetch_product(url))
