@@ -1,6 +1,7 @@
 node_modules/
 package-lock.json
 package.json
+.browser_profile
 
 #--------------------------------------------------#
 # The following was generated with gitignore.nvim: #

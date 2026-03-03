@@ -1,4 +1,5 @@
 requests==2.32.5
 python-dotenv==1.2.1
 pytest==9.0.2
-crawl4ai==0.8.0
+PyVirtualDisplay==3.0
+Crawl4AI==0.8.0

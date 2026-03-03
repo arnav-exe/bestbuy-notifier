@@ -34,7 +34,8 @@ WATCHLIST = [
         "identifiers": {
             "bestbuy": "6666376",
             "amazon": "B0FYR2V7ZB",
-            "lenovo": "https://www.lenovo.com/us/en/p/handheld/legion-go-gen-2/83n0000aus"
+            "lenovo": "https://www.lenovo.com/us/en/p/handheld/legion-go-gen-2/83n0000aus",
+            "bhvideo": "https://www.bhphotovideo.com/c/product/1920305-REG/lenovo_83n0000aus_legion_go_2_handheld.html"
         },
         "user_max_price": None,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
