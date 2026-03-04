@@ -171,7 +171,7 @@ class BHVideoSource(DataSource):
         if hasattr(sys.stdout, "reconfigure"):
             sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-        retries = 5
+        retries = 0
         delay = 2
         exp = 0
 
@@ -184,7 +184,7 @@ class BHVideoSource(DataSource):
                 if html is not None:
                     break
 
-                if i == retries - 1:
+                if i >= retries - 1:
                     self.logger.warning("Failed to load page: Cloudflare blocked in both headless and headed modes")
                     return None
 

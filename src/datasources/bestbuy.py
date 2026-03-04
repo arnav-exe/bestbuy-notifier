@@ -61,7 +61,7 @@ class BestbuySource(DataSource):
 
     def fetch_product(self, identifier: str):
         # exponential backoff params
-        retries = 5
+        retries = 0
         delay = 2
         exp = 0
 
@@ -71,7 +71,7 @@ class BestbuySource(DataSource):
                 response = self.fetch_raw(identifier)
 
                 if not response.ok:
-                    if i == retries - 1:  # if max retries reached, log error and return None
+                    if i >= retries - 1:  # if max retries reached, log error and return None
                         self.logger.warning(f"[{identifier}] HTTP {response.status_code}: {response.reason}")
                         return None
 

@@ -147,7 +147,7 @@ class LenovoSource(DataSource):
         if hasattr(sys.stdout, "reconfigure"):
             sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-        retries = 5
+        retries = 0
         delay = 2
         exp = 0
 
@@ -160,7 +160,7 @@ class LenovoSource(DataSource):
                 response = asyncio.run(self.fetch_raw(identifier))
 
                 if not response.success:
-                    if i == retries - 1:
+                    if i >= retries - 1:
                         self.logger.warning(f"Failed to load page: {response.error_message}")
                         return None
                     else:
@@ -170,7 +170,7 @@ class LenovoSource(DataSource):
                         continue
 
                 if not (m := INJECTED_RE.search(response.html or "")):  # holy walrus operator
-                    if i == retries - 1:
+                    if i >= retries - 1:
                         self.logger.warning("Injected data not found in html")
                         return None
                     else:

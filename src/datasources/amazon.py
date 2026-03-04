@@ -51,7 +51,7 @@ class AmazonSource(DataSource):
 
     def fetch_product(self, identifier: str):
         # exponential backoff params
-        retries = 5
+        retries = 0
         delay = 2
         exp = 0
 
@@ -63,7 +63,7 @@ class AmazonSource(DataSource):
                     response = self.fetch_raw(identifier)
                 except subprocess.TimeoutExpired:
                     self.logger.warning(f"[{identifier}] Subprocess timed out (attempt {i})")
-                    if i == retries - 1:
+                    if i >= retries - 1:
                         return None
                     sleep_time = (delay ** exp) / 2
                     time.sleep(sleep_time)
@@ -71,7 +71,7 @@ class AmazonSource(DataSource):
                     continue
 
                 if response.stderr or response.stdout.startswith("Error:"):
-                    if i == retries - 1:  # if max retries reached log and move on
+                    if i >= retries - 1:  # if max retries reached log and move on
                         self.logger.warning(f"[{identifier}] amazon-buddy error: stderr={response.stderr.strip()}, stdout={response.stdout.strip()}")
                         return None
 
