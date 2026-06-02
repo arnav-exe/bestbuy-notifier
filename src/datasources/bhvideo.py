@@ -171,7 +171,7 @@ class BHVideoSource(DataSource):
         if hasattr(sys.stdout, "reconfigure"):
             sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-        retries = 0
+        retries = 5
         delay = 2
         exp = 0
 

@@ -51,7 +51,7 @@ class AmazonSource(DataSource):
 
     def fetch_product(self, identifier: str):
         # exponential backoff params
-        retries = 0
+        retries = 5
         delay = 2
         exp = 0
 
@@ -61,6 +61,7 @@ class AmazonSource(DataSource):
 
                 try:
                     response = self.fetch_raw(identifier)
+
                 except subprocess.TimeoutExpired:
                     self.logger.warning(f"[{identifier}] Subprocess timed out (attempt {i})")
                     if i >= retries - 1:
@@ -99,16 +100,16 @@ SourceRegistry.register(AmazonSource)
 
 
 if __name__ == "__main__":
-    from ..utils import jprint
+    from pprint import pprint
 
-    cmd = ["node",
-           AMAZON_BUDDY_CLI,
-           "asin",
-           "1259642232",
-           "--random-ua"]
+    a = AmazonSource()
 
-    res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+    pprint(a.fetch_product("B0D61SDZD2"))
 
-    jprint(res.stdout)
-    print()
-    jprint(res.stderr)
+
+
+    """
+    TODO:
+        2. add option to pass '--country' flag for amazon CLI to specify which country
+        4. add walmart as a datasource
+    """
