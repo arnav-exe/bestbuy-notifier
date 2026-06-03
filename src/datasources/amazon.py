@@ -107,9 +107,3 @@ if __name__ == "__main__":
     a = AmazonSource()
 
     pprint(a.fetch_product("B0D61SDZD2"))
-
-    """
-    TODO:
-        2. add option to pass '--country' flag for amazon CLI to specify which country
-        4. add walmart as a datasource
-    """
