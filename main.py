@@ -22,20 +22,34 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 WATCHLIST = [
-    {  # lenovo legion go 2 1TB
+    {  # Crucial P310 2TB NVME SSD 2230
         "identifiers": {
-            "bestbuy": "6643145",
-            "amazon": "B0G573TMZS"
+            "amazon": {
+                "asin": "B0D61SDZD2",
+                "country": "GB"
+            },
         },
-        "user_max_price": None,
+        "user_max_price": 165,
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL"),
+    },
+    {  # thinkpad x1 carbon gen 13 (32GB ram, core 7 ultra 268V, 1TB ssd, 2880x1800 OLED non-touch 120Hz display)
+        "identifiers": {
+            "amazon": "B0F4HRBPX2",
+            "bestbuy": "10891350",
+        },
+        "user_max_price": 2250,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
-    {  # lenovo legion go 2 2TB
+    {  # ipad 11 inch A16 chip (just to test this service works
         "identifiers": {
-            "bestbuy": "6666376",
-            "amazon": "B0FYR2V7ZB",
-            "lenovo": "https://www.lenovo.com/us/en/p/handheld/legion-go-gen-2/83n0000aus",
-            "bhvideo": "https://www.bhphotovideo.com/c/product/1920305-REG/lenovo_83n0000aus_legion_go_2_handheld.html"
+            "amazon": "B0DZ75TN5F",
+        },
+        "user_max_price": 2250,
+        "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
+    },
+    {  # sony wh1000xm5
+        "identifiers": {
+            "bestbuy": "6505727",
         },
         "user_max_price": None,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
