@@ -72,7 +72,7 @@ class WalmartSource(DataSource):
             regular_price=regular_price,
             product_url=f"https://www.walmart.com{product.get('canonicalUrl')}" if product.get("canonicalUrl") else url,
             retailer_name="Walmart",
-            retailer_logo="https://upload.wikimedia.org/wikipedia/commons/b/b1/Walmart_logo_%282008%29.svg",
+            retailer_logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Walmart_logo_%282025%3B_Alt%29.svg/960px-Walmart_logo_%282025%3B_Alt%29.svg.png",
         )
 
     def fetch_product(self, identifier: str):
