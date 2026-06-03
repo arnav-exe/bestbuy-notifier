@@ -34,20 +34,25 @@ WATCHLIST = [
     },
     {  # thinkpad x1 carbon gen 13 (32GB ram, core 7 ultra 268V, 1TB ssd, 2880x1800 OLED non-touch 120Hz display)
         "identifiers": {
-            "amazon": "B0F4HRBPX2",
+            "amazon": {
+                "asin": "B0F4HRBPX2",
+                "country": "GB"
+            },
             "bestbuy": "10891350",
+            "walmart": "https://www.walmart.com/ip/Lenovo-ThinkPad-X1-Carbon-Gen-13-Business-Laptop-14-0in-OLED-2-8K-Display-Intel-Ultra-7-268V-32GB-LPDDR5X-1TB-SSD-Intel-Arc-140V-Backlit-KB-Fingerpri/17973663836?classType=REGULAR&from=/search"
         },
         "user_max_price": 2250,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
-    {  # ipad 11 inch A16 chip (just to test this service works
+
+    {  # ipad 11 inch A16 chip (just to test this service works)
         "identifiers": {
             "amazon": "B0DZ75TN5F",
         },
         "user_max_price": 2250,
         "ntfy_topic": os.getenv("NTFY_TOPIC_URL")
     },
-    {  # sony wh1000xm5
+    {  # sony wh1000xm5 (just to test this service works)
         "identifiers": {
             "bestbuy": "6505727",
         },
