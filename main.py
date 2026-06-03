@@ -94,7 +94,15 @@ def _process_identifier(log_queue, src_name, identifier, user_max_price, ntfy_to
 
     # fetch product data
     data_fetcher = SourceRegistry.get(src_name)
-    product = data_fetcher.fetch_product(identifier)
+
+    # special case for amazon (if country is provided)
+    if src_name == "amazon" and "country" in identifier:
+        product = data_fetcher.fetch_product(identifier["asin"], identifier["country"])
+    elif src_name == "amazon" and "country" not in identifier:
+        product = data_fetcher.fetch_product(identifier, "US")
+
+    else:  # for all datasrcs other than amazon
+        product = data_fetcher.fetch_product(identifier)
 
     if product is None:
         logger.warning(f"[PID {pid}] fetch_product returned None, skipping")
