@@ -21,11 +21,13 @@ class AmazonSource(DataSource):
     def __init__(self, logger: logging.Logger = None):
         super().__init__(logger)
 
-    def fetch_raw(self, identifier: str) -> subprocess.CompletedProcess:
+    def fetch_raw(self, identifier: str, country: str) -> subprocess.CompletedProcess:
         cmd = ["node",
                AMAZON_BUDDY_CLI,
                "asin",
                f"{identifier}",
+               "--country",
+               f"{country}"
                "--random-ua"]
 
         self.logger.debug(f"Amazon-buddy GET request: {' '.join(cmd)}")
@@ -49,7 +51,7 @@ class AmazonSource(DataSource):
         )
 
 
-    def fetch_product(self, identifier: str):
+    def fetch_product(self, identifier: str, country: str):
         # exponential backoff params
         retries = 5
         delay = 2
@@ -57,10 +59,10 @@ class AmazonSource(DataSource):
 
         try:
             for i in range(retries):
-                self.logger.debug(f"Fetching product data for product: {identifier} (attempt: {i})")
+                self.logger.debug(f"Fetching product data for product: {identifier} (country: {country}) (attempt: {i})")
 
                 try:
-                    response = self.fetch_raw(identifier)
+                    response = self.fetch_raw(identifier, country)
 
                 except subprocess.TimeoutExpired:
                     self.logger.warning(f"[{identifier}] Subprocess timed out (attempt {i})")
@@ -105,8 +107,6 @@ if __name__ == "__main__":
     a = AmazonSource()
 
     pprint(a.fetch_product("B0D61SDZD2"))
-
-
 
     """
     TODO:
