@@ -17,11 +17,16 @@
         1. if any condition is met, fire appropriate ntfy
 
 
+# Sources supported:
+ - amazon
+ - bestbuy
+ - bhphotovideo
+ - lenovo
+ - walmart
 
-# SOURCES TO ADD:
+
+# Sources to add:
  - microcenter - crawl4ai
- - costco - crawl4ai
-
 
 
 # Patterns used:

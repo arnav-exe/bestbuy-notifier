@@ -36,7 +36,6 @@ WATCHLIST = [
         "identifiers": {
             "amazon": {
                 "asin": "B0F4HRBPX2",
-                "country": "GB"
             },
             "bestbuy": "10891350",
             "walmart": "https://www.walmart.com/ip/Lenovo-ThinkPad-X1-Carbon-Gen-13-Business-Laptop-14-0in-OLED-2-8K-Display-Intel-Ultra-7-268V-32GB-LPDDR5X-1TB-SSD-Intel-Arc-140V-Backlit-KB-Fingerpri/17973663836?classType=REGULAR&from=/search"
